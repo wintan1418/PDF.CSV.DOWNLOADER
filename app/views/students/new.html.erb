@@ -1,0 +1,42 @@
+<h1>Students</h1>
+
+<%= link_to 'New Student', new_student_path %>
+<br><br>
+
+<%= form_with url: import_students_path, local: true, method: :post, multipart: true do |form| %>
+  <div class="field">
+    <%= form.label :file %>
+    <%= form.file_field :file %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Import CSV' %>
+  </div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Phone Number</th>
+      <th>Admission Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.email %></td>
+        <td><%= student.age %></td>
+        <td><%= student.gender %></td>
+        <td><%= student.address %></td>
+        <td><%= student.phone_number %></td>
+        <td><%= student.admission_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
